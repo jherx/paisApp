@@ -3,8 +3,8 @@
 
 <div class="row">
     <div class="col">
-        <form action="" autocomplete="off">
-            <input type="text" name="termino" placeholder="Buscar por pais..." class="form-control">
+        <form action="" autocomplete="off" (ngSubmit)="buscar()">
+            <input type="text" name="termino" [(ngModel)]="termino" placeholder="Buscar por pais..." class="form-control">
         </form>
     </div>
 </div>
