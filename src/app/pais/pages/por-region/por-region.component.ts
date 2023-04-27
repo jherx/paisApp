@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RespPasis} from '../../interfaces/paises.interfaces'
+import { PaisService } from '../../services/pais.service';
 
 @Component({
   selector: 'app-por-region',
@@ -6,11 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class PorRegionComponent implements OnInit {
+export class PorRegionComponent  {
 
-  constructor() { }
+  termino: string = '';
+  hayError: boolean = false;
+  region: RespPasis[] = [];
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private PaisService: PaisService
+  ) { }
 
+    buscar(termino:string){
+      this.hayError = false
+      this.PaisService.buscarRegion(termino).subscribe((region)=>{
+        this.region = region
+      },
+      (err) =>{
+        this.hayError = true
+      });
+      this.termino = ''
+    }
+
+    sugerencia(termino:string){
+      this.hayError = false
+    }
 }

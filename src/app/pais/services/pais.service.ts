@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { RespPasis } from '../interfaces/paises.interfaces';
-
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,38 @@ export class PaisService {
 
   constructor(private http:HttpClient) { }
 
+
+  busquedaPorAlphacode( code: string): Observable<RespPasis[]>{
+    const url = `${this.urlApi}/alpha/${code}`
+    return this.http.get<RespPasis[]>(url)
+    .pipe(
+      catchError( error => {
+        console.log( error)
+
+        return of([])
+      })
+    )
+  }
+
   buscarPais(termino:string): Observable<RespPasis[]>{
    const url = `${this.urlApi}/name/${termino}`
+    return this.http.get<RespPasis[]>(url)
+    .pipe(
+      catchError( error => {
+        console.log( error)
+
+        return of([])
+      })
+    )
+  }
+
+  buscarCapital(termino:string): Observable<RespPasis[]>{
+    const url = `${this.urlApi}/capital/${termino}`
+    return this.http.get<RespPasis[]>(url)
+  }
+  
+  buscarRegion(termino:string): Observable<RespPasis[]>{
+    const url = `${this.urlApi}/region/${termino}`
     return this.http.get<RespPasis[]>(url)
   }
 }
