@@ -5,7 +5,8 @@
     <div class="col">
         <app-pais-input
          (onEnter)="buscar($event)"
-         (onDebounce)="sugerencia($event)"
+         (onDebounce)="buscar($event)"
+         placeholder="Busqueda por Capital"
          ></app-pais-input>
     </div>
 </div>
@@ -14,11 +15,13 @@
 
 <div *ngIf="hayError"
 class="alert alert-danger">
-    NO SE ENCONTRO EL PAIS  {{termino}}
+   <p> NO SE ENCONTRO EL PAIS  {{termino}}</p>
 </div>
 
+<app-loader *ngIf="isLoading"></app-loader>
 <div *ngIf="capital.length > 0" class="row">
     <div class="col">
+
        <app-pais-table [pais]="capital"></app-pais-table>
     </div>
 </div>
