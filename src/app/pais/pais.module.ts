@@ -10,6 +10,7 @@ import { VerPaisComponent } from './pages/ver-pais/ver-pais.component';
 import { RouterModule } from '@angular/router';
 import { PaisTableComponent } from './components/pais-table/pais-table.component';
 import { PaisInputComponent } from './components/pais-input/pais-input.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -25,7 +26,8 @@ import { PaisInputComponent } from './components/pais-input/pais-input.component
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports:[
     PorCapitalComponent,
