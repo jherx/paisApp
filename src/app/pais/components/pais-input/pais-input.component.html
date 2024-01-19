@@ -1,9 +1,13 @@
 <form action="" autocomplete="off" (ngSubmit)="buscar()">
     <input 
+    pl
     type="text" 
     name="termino" 
     [(ngModel)]="termino" 
-    (input)="keypress()"
-    placeholder="Buscar por pais..." 
-    class="form-control">
+    (keyup)="keypress(input.value)"
+    [placeholder]="placeholder" 
+    #input
+    class="form-control"
+    >
+    
 </form>
